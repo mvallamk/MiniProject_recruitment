@@ -1,0 +1,61 @@
+create table Company_Master (
+company_id varchar2(5) primary key,
+company_name varchar2(30),
+company_address varchar2(100),
+contact_person varchar2(25),
+email_id varchar2(30),
+contact_number varchar2(10));
+
+create table Job_Requirements (
+job_id varchar2(5) primary key,
+company_id varchar2(5) references Company_Master(company_id),
+position_required varchar2(20),
+numbers_required Number(2),
+Experience_required Number(2),
+Qualification_required varchar2(20),
+job_location varchar2(25),
+job_description varchar2(100));
+
+create table candidate_personal (
+candidate_id varchar2(5)primary key,
+candidate_name varchar2(20),
+address varchar2(100),
+dob date,
+email_id varchar2(30),
+contact_number varchar2(10),
+marital_status varchar2(15),
+gender varchar2(10),
+passport_number varchar2(15),
+candidate_photo blob );
+
+create table candidate_qualifications (
+qualification_id varchar2(5) primary key,
+qualification_name varchar2(30),
+specialization_area varchar2(30),
+college_name varchar2(25),
+university_name varchar2(30),
+year_of_passing varchar2(4),
+percentage number(5,2),
+candidate_id varchar2(5) references candidate_personal (candidate_id));
+
+create table candidate_work_history (
+work_id varchar2(5) primary key,
+candidate_id varchar2(5) references candidate_personal (candidate_id),
+which_employer varchar2(10),
+contact_person varchar2(25),
+position_held varchar2(20),
+company_name varchar2(20),
+employment_from date,
+employment_to date,
+reason_for_leaving varchar2(100),
+responsibilities varchar2(150),
+Hr_rep_name varchar2(20),
+Hr_rep_contact_number varchar2(10));
+
+
+create table Job_Applied (
+job_id varchar2(5) references Job_Requirements(job_id),
+candidate_id varchar2(5) references candidate_personal (candidate_id));
+
+
+
