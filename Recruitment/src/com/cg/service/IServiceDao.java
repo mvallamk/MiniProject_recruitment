@@ -1,5 +1,10 @@
 package com.cg.service;
 
-public interface IServiceDao {
+import java.util.List;
 
+import com.cg.entities.JobRequirements;
+
+public interface IServiceDao
+{
+	List<JobRequirements>getJobs();
 }

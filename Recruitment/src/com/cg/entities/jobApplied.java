@@ -1,7 +1,15 @@
 package com.cg.entities;
 
-public class jobApplied
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Job_Applied")
+public class jobApplied implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
 	private String jobId;
 	private String candidateId;
 	
