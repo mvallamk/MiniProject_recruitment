@@ -3,11 +3,13 @@ package com.cg.client;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.entities.JobRequirements;
 import com.cg.exception.RecruitmentException;
 import com.cg.service.ServiceDaoImpl;
 
@@ -19,6 +21,8 @@ public class UserClient {
 		CandidatePersonal candPers=new CandidatePersonal();
 		CandidateQualifications candQual =new CandidateQualifications();
 		CandidateWorkHistory candWork=new CandidateWorkHistory();
+		
+		
 		Scanner sc=new Scanner(System.in);
 		int swtch;
 		String candID;
@@ -32,14 +36,41 @@ public class UserClient {
 		switch(swtch)
 		{
 		case 3:
-			try
+			System.out.println("1. By Qualification");
+			System.out.println("2. By Position");
+			System.out.println("3. By Experience (in years)");
+			System.out.println("4. By Location (mumbai, pune, chennai, bangalore,hyderabad)");
+			
+			int switchsearch=sc.nextInt();
+			List<JobRequirements> jobList=null;
+			switch(switchsearch)
 			{
-				System.out.println(service.getJobs());
+			
+			case 1:
+				System.out.println("Enter Qualification (HSC,SSC,GRAD,BE)");
+				String qual=sc.next();
+				//qual=qual.toLowerCase()
+				jobList=service.getJobByQual(qual);
+			
+				break;
+			case 2:
+				System.out.println("Enter Position (SE- Software Engineer, SSE- Senior Software Engineer, C- Consultant)");
+				String pos=sc.next();
+				jobList=service.getJobByPosition(pos);
+				break;
+			case 3:
+				System.out.println("Enter Experience in years");
+				int exp=sc.nextInt();
+				jobList=service.getJobByExperience(exp);
+				break;
+			case 4:
+				System.out.println("Enter Location (mumbai, pune, chennai, bangalore,hyderabad)");
+				String loc=sc.next();
+				jobList=service.getJobByLocation(loc);
+				break;
 			}
-			catch(RecruitmentException re)
-			{
-				System.out.println(re.getMessage());
-			}
+			System.out.println(jobList);
+			break;
 		case 1:
 			System.out.println("Enter Candidate Id");
 			candID=sc.next();
@@ -155,5 +186,6 @@ public class UserClient {
 
 		}
 	}
+
 
 }

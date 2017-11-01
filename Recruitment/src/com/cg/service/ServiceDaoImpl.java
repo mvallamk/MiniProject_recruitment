@@ -10,13 +10,10 @@ import com.cg.dao.ILoginDao;
 import com.cg.dao.IUserDao;
 import com.cg.dao.LoginDaoImpl;
 import com.cg.dao.UserDaoImpl;
-
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
-
 import com.cg.entities.CompanyMaster;
-
 import com.cg.entities.JobRequirements;
 import com.cg.entities.Login;
 import com.cg.exception.RecruitmentException;
@@ -114,6 +111,46 @@ public class ServiceDaoImpl implements IServiceDao {
 	@Override
 	public CompanyMaster getCompany(String companyId) {
 		return companyDao.getCompany(companyId); 
+	}
+
+	@Override
+	public List<JobRequirements> getJobByQual(String qual) {
+		
+		return userDao.getJobByQual(qual);
+	}
+
+	@Override
+	public List<JobRequirements> getJobByPosition(String qual) {
+
+		return userDao.getJobByPosition(qual);
+	}
+
+	@Override
+	public List<JobRequirements> getJobByExperience(int exp) {
+	
+		return userDao.getJobByExperience(exp);
+	}
+
+	@Override
+	public List<JobRequirements> getJobByLocation(String qual) {
+		
+		return userDao.getJobByLocation(qual);
+	}
+
+	@Override
+	public List<CandidateWorkHistory> getCandidateByQual(String qual) {
+	
+		return companyDao.getCandidateByQual(qual);
+	}
+
+	@Override
+	public List<CandidateWorkHistory> getCandidateByPosition(String pos) {
+		return companyDao.getCandidateByPosition(pos);
+	}
+
+	@Override
+	public List<CandidateWorkHistory> getCandidateByExperience(int exp) {
+		return companyDao.getCandidateByExperience(exp);
 	}	
 
 }

@@ -3,7 +3,9 @@ package com.cg.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
@@ -101,6 +103,38 @@ public class UserDaoImpl implements IUserDao {
 		}
 
 
+	}
+
+	@Override
+	public List<JobRequirements> getJobByQual(String qual) {
+    TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.qualificationRequired=:pQual",JobRequirements.class);
+		query.setParameter("pQual", qual);
+		List<JobRequirements> accList=query.getResultList();
+		return accList;
+	}
+
+	@Override
+	public List<JobRequirements> getJobByPosition(String pos) {
+		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.positionRequired=:pPos",JobRequirements.class);
+			query.setParameter("pPos", pos);
+			List<JobRequirements> accList=query.getResultList();
+			return accList;
+	}
+
+	@Override
+	public List<JobRequirements> getJobByExperience(int exp) {
+		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.experienceRequired<=:pExp",JobRequirements.class);
+			query.setParameter("pExp", exp);
+			List<JobRequirements> accList=query.getResultList();
+			return accList;
+	}
+
+	@Override
+	public List<JobRequirements> getJobByLocation(String loc) {
+		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.jobLocation=:pLoc",JobRequirements.class);
+			query.setParameter("pLoc", loc);
+			List<JobRequirements> accList=query.getResultList();
+			return accList;
 	}
 
 }

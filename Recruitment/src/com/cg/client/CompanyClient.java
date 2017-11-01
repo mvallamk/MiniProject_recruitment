@@ -1,7 +1,9 @@
 package com.cg.client;
 
+import java.util.List;
 import java.util.Scanner;
 
+import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
 import com.cg.entities.JobRequirements;
 import com.cg.service.IServiceDao;
@@ -27,6 +29,7 @@ public class CompanyClient {
 		System.out.println("1.Add Company Details");
 		System.out.println("2.Modify Company Details");	
 		System.out.println("3.Post Job Requirements");
+		System.out.println("4.Search and Hire Candidates");
 
 		choice=Integer.parseInt(sc.nextLine());
 		switch(choice)
@@ -106,6 +109,37 @@ public class CompanyClient {
 			System.out.println("Enter the the job description");
 			jobRequirements.setJobDescription(sc.next());
 			service.postJobRequirements(jobRequirements);
+			break;
+		case 4:
+			System.out.println("1. By Qualification");
+			System.out.println("2. By Position");
+			System.out.println("3. By Experience (in years)");
+					
+			int switchsearch=sc.nextInt();
+			List<CandidateWorkHistory> jobList=null;
+			switch(switchsearch)
+			{
+			
+			case 1:
+				System.out.println("Enter Qualification (HSC,SSC,GRAD,BE)");
+				String qual=sc.next();
+				//qual=qual.toLowerCase()
+				jobList=service.getCandidateByQual(qual);
+			
+				break;
+			case 2:
+				System.out.println("Enter Position (SE- Software Engineer, SSE- Senior Software Engineer, C- Consultant)");
+				String pos=sc.next();
+				jobList=service.getCandidateByPosition(pos);
+				break;
+			case 3:
+				System.out.println("Enter Experience in years");
+				int exp=sc.nextInt();
+				jobList=service.getCandidateByExperience(exp);
+				break;
+			
+			}
+			System.out.println(jobList);
 			break;
 		}
 	}
