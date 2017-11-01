@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Job_Applied")
-public class jobApplied implements Serializable 
+public class JobApplied implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -19,7 +19,7 @@ public class jobApplied implements Serializable
 	private String jobId;
 	private String candidateId;
 	
-	public jobApplied() {
+	public JobApplied() {
 		super();
 	}
 
@@ -31,7 +31,7 @@ public class jobApplied implements Serializable
 		this.id = id;
 	}
 
-	public jobApplied(String jobId, String candidateId) {
+	public JobApplied(String jobId, String candidateId) {
 		super();
 		this.jobId = jobId;
 		this.candidateId = candidateId;
@@ -55,7 +55,7 @@ public class jobApplied implements Serializable
 
 	@Override
 	public String toString() {
-		return "jobApplied [jobId=" + jobId + ", candidateId=" + candidateId
+		return "JobApplied [jobId=" + jobId + ", candidateId=" + candidateId
 				+ "]";
 	}
 	

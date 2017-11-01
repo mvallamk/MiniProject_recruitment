@@ -6,9 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-
 import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
+import com.cg.entities.HireDetails;
+import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
 import com.cg.jpautil.JPAUtil;
 
@@ -19,7 +20,9 @@ public class CompanyDaoImpl implements ICompanyDao {
 	public CompanyDaoImpl() {
 		entityManager = JPAUtil.getEntityManager();
 	}
-			
+	
+	
+	
 	@Override
 	public void addCompanyDetails(CompanyMaster companyMaster) {
 		entityManager.persist(companyMaster);		
@@ -70,6 +73,23 @@ public class CompanyDaoImpl implements ICompanyDao {
 		//query.setParameter("pCustomerName", customerName);
 		List<CandidateWorkHistory> accList=query.getResultList();
 		return accList;
+	}
+
+	@Override
+	public List<JobApplied> getAllAppliedCandidates() {
+		
+		Query query = entityManager.createNamedQuery("getAllAppliedCandidates");
+		@SuppressWarnings("unchecked")
+		List<JobApplied> appliedCandidatesList = query.getResultList();
+		return appliedCandidatesList;
+	}
+
+
+
+	@Override
+	public void addHiredCandidates(HireDetails hiredetails) {
+		entityManager.persist(hiredetails);	
+		
 	}
 
 }

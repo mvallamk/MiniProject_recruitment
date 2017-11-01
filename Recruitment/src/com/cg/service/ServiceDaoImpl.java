@@ -14,6 +14,8 @@ import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
+import com.cg.entities.HireDetails;
+import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
 import com.cg.entities.Login;
 import com.cg.exception.RecruitmentException;
@@ -151,6 +153,20 @@ public class ServiceDaoImpl implements IServiceDao {
 	@Override
 	public List<CandidateWorkHistory> getCandidateByExperience(int exp) {
 		return companyDao.getCandidateByExperience(exp);
+	}
+
+	@Override
+	public List<JobApplied> getAllAppliedCandidates() {
+		// TODO Auto-generated method stub
+		return companyDao.getAllAppliedCandidates() ;
+	}
+
+	@Override
+	public void addHiredCandidates(HireDetails hiredetails) {
+		companyDao.beginTransaction();
+		companyDao.addHiredCandidates(hiredetails);	
+		companyDao.commitTransaction();
+		
 	}	
 
 }

@@ -1,10 +1,12 @@
 package com.cg.client;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
+import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
 import com.cg.service.IServiceDao;
 import com.cg.service.ServiceDaoImpl;
@@ -23,13 +25,14 @@ public class CompanyClient {
 		String contactPerson;		
 		String emailId;
 		String contactNumber;
-		
+
 		int choice;
 		System.out.println("Choose the Operation");
 		System.out.println("1.Add Company Details");
 		System.out.println("2.Modify Company Details");	
 		System.out.println("3.Post Job Requirements");
 		System.out.println("4.Search and Hire Candidates");
+		System.out.println("5.Hire from applied Candidates");
 
 		choice=Integer.parseInt(sc.nextLine());
 		switch(choice)
@@ -48,7 +51,7 @@ public class CompanyClient {
 			emailId=sc.next();
 			System.out.println("Enter the contact number");
 			contactNumber=sc.next();
-			
+
 			companyMaster=new CompanyMaster(companyId,companyName,companyAddress,
 					contactPerson,emailId,contactNumber);
 			service.addCompanyDetails(companyMaster);
@@ -114,18 +117,18 @@ public class CompanyClient {
 			System.out.println("1. By Qualification");
 			System.out.println("2. By Position");
 			System.out.println("3. By Experience (in years)");
-					
+
 			int switchsearch=sc.nextInt();
 			List<CandidateWorkHistory> jobList=null;
 			switch(switchsearch)
 			{
-			
+
 			case 1:
 				System.out.println("Enter Qualification (HSC,SSC,GRAD,BE)");
 				String qual=sc.next();
 				//qual=qual.toLowerCase()
 				jobList=service.getCandidateByQual(qual);
-			
+
 				break;
 			case 2:
 				System.out.println("Enter Position (SE- Software Engineer, SSE- Senior Software Engineer, C- Consultant)");
@@ -137,9 +140,32 @@ public class CompanyClient {
 				int exp=sc.nextInt();
 				jobList=service.getCandidateByExperience(exp);
 				break;
-			
+
 			}
 			System.out.println(jobList);
+			break;
+
+		case 5:
+			System.out.println("List of Candidate Applications:");
+			for (JobApplied appliedCandidatesList:service.getAllAppliedCandidates())
+				System.out.println(appliedCandidatesList);
+
+			System.out.println("Hire from above list [enter : yes/no]:");
+			String hireChoice = sc.next();
+
+			if(hireChoice.equals("yes"))
+			{
+				System.out.println("Enter candidate id");
+				LocalDate dateOfHire = LocalDate.now();
+
+
+				//code to be added for getting comppanyId of applied candidate
+				//HireDetails hiredCandidates = new HireDetails()
+				//service.addHiredCandidates();
+
+
+			}
+
 			break;
 		}
 	}
