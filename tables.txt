@@ -59,3 +59,6 @@ candidate_id varchar2(5) references candidate_personal (candidate_id));
 
 
 
+CREATE TABLE hire_details(job_id varchar2(5) references Job_Requirements(job_id),
+candidate_id varchar2(5) references candidate_personal (candidate_id), hireDate date,
+company_id varchar2(5) references Company_Master(company_id))
