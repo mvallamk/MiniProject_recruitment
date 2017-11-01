@@ -1,14 +1,37 @@
 package com.cg.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Job_Requirements")
 public class JobRequirements 
 {
+	@Id
+	@Column(name="Job_ID")
 	private String jobID;
+	
+	@Column(name="Company_Id")	
 	private String companyId;
+	
+	@Column(name="Position_Required")
 	private String positionRequired;
+	
+	@Column(name="Number_Required")
 	private int numberRequired;
+	
+	@Column(name="Experience_Required")
 	private int experienceRequired;
+	
+	@Column(name="Qualification_Required")
 	private String qualificationRequired;
+	
+	@Column(name="Job_Location")
 	private String jobLocation;
+	
+	@Column(name="Job_Description")
 	private String jobDescription;
 	
 	public JobRequirements() {

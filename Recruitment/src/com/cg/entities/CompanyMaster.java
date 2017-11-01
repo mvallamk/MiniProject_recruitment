@@ -1,12 +1,34 @@
 package com.cg.entities;
 
-public class CompanyMaster 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Company_Master")
+public class CompanyMaster implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Column(name="Company_Id")
 	private String companyId;
+	
+	@Column(name="Company_Name")
 	private String companyName;
+	
+	@Column(name="Company_Address")
 	private String companyAddress;
+	
+	@Column(name="Contact_Person")
 	private String contactPerson;
+	
+	@Column(name="Email_Id")
 	private String emailId;
+	
+	@Column(name="Contact_Number")
 	private String contactNumber;
 
 	public CompanyMaster() {
@@ -81,9 +103,5 @@ public class CompanyMaster
 				+ ", contactPerson=" + contactPerson + ", emailId=" + emailId
 				+ ", contactNumber=" + contactNumber + "]";
 	}
-
-
-
-
 
 }
