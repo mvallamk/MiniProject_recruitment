@@ -1,5 +1,6 @@
 package com.cg.client;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -7,6 +8,7 @@ import java.util.Scanner;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.exception.RecruitmentException;
 import com.cg.service.ServiceDaoImpl;
 
 public class UserClient {
@@ -19,6 +21,7 @@ public class UserClient {
 		CandidateWorkHistory candWork=new CandidateWorkHistory();
 		Scanner sc=new Scanner(System.in);
 		int swtch;
+		String candID;
 		System.out.println("1.Add Resume");
 		System.out.println("2.Modify Resume");
 		System.out.println("3.Search jobs ");
@@ -29,8 +32,20 @@ public class UserClient {
 		switch(swtch)
 		{
 		case 3:
-			System.out.println(service.getJobs());
+			try
+			{
+				System.out.println(service.getJobs());
+			}
+			catch(RecruitmentException re)
+			{
+				System.out.println(re.getMessage());
+			}
 		case 1:
+			System.out.println("Enter Candidate Id");
+			candID=sc.next();
+			candPers.setCandidateId(candID);
+			candQual.setCandidate(candID);
+			candWork.setCandidateId(candID);
 			System.out.println("Enter your name");
 			String name = sc.next();
 			candPers.setCandidateName(name);
@@ -39,6 +54,9 @@ public class UserClient {
 			candPers.setAddress(address);
 			System.out.println("Enter DOB in format yyyy-MM-dd");
 			String dateOfBirth = sc.next();
+			LocalDate dob1=LocalDate.parse(dateOfBirth,dtf);
+			Date dob=Date.valueOf(dob1);
+			candPers.setDob(dob);
 			System.out.println("Enter mail id");
 			String mail = sc.next();
 			candPers.setEmailId(mail);
@@ -54,6 +72,14 @@ public class UserClient {
 			System.out.println("Enter Passport Number");
 			String passport = sc.next();
 			candPers.setPassportNumber(passport);
+			try {
+
+				service.candidPersonal(candPers);
+			} 
+			catch (RecruitmentException e) {
+
+				System.out.println(e.getMessage());
+			}
 			System.out.println("Enter Qualification Id");
 			String qualId = sc.next();
 			candQual.setQualificationId(qualId);
@@ -71,34 +97,62 @@ public class UserClient {
 			candQual.setUniversityName(univName);
 			System.out.println("Enter Year of Passing in format yyyy-MM-dd");
 			String passingYear = sc.next();
-			LocalDate yearPass=LocalDate.parse(passingYear,dtf);
+			LocalDate yearPass1=LocalDate.parse(passingYear,dtf);
+			Date yearPass=Date.valueOf(yearPass1) ;
 			candQual.setYearOfPassing(yearPass);
 			System.out.println("Enter Percentage");
-			Float percent = sc.nextFloat();
+			double percent = sc.nextDouble();
 			candQual.setPercentage(percent);
+			try {
+				service.candidQualification(candQual);
+			} catch (RecruitmentException e) {
+
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 			System.out.println("Enter Work Id");
 			String workId = sc.next();
+			candWork.setWorkId(workId);
 			System.out.println("Enter Previous Employer");
 			String prevEmpl = sc.next();
+			candWork.setWhichEmployer(prevEmpl);
 			System.out.println("Enter Contact Person");
 			String contPers = sc.next();
+			candWork.setContactPerson(contPers);
 			System.out.println("Enter Position Held");
 			String posHeld = sc.next();
+			candWork.setPositionHeld(posHeld);
 			System.out.println("Enter Company Name");
 			String compName = sc.next();
+			candWork.setCompanyName(compName);
 			System.out.println("Enter Employment from in format yyyy-MM-dd");
-			String empFrom = sc.next();
+			String emp = sc.next();
+			LocalDate empFrom1 =LocalDate.parse(emp,dtf);
+			Date empFrom=Date.valueOf(empFrom1);
+			candWork.setEmploymentFrom(empFrom);
 			System.out.println("Enter Employment to in format yyyy-MM-dd");
-			String empTo = sc.next();
+			String empT = sc.next();
+			LocalDate empTo1 =LocalDate.parse(empT,dtf);
+			Date empTo=Date.valueOf(empTo1);
+			candWork.setEmploymentTo(empTo);
 			System.out.println("Enter Raeson for Leaving");
 			String reasonLeav = sc.next();
+			candWork.setReasonForLeaving(reasonLeav);
 			System.out.println("Enter Responsibilities");
 			String respon = sc.next();
+			candWork.setResponsibilities(respon);
 			System.out.println("Enter Hr rep's Name");
 			String hrName = sc.next();
+			candWork.setHrRepName(hrName);
 			System.out.println("Enter Hr rep's Contact Number");
 			String hrNumber = sc.next();
-		
+			candWork.setHrRepContactNumber(hrNumber);
+			try {
+				service.candidWorkHistory(candWork);
+			} catch (RecruitmentException e) {			
+				System.out.println(e.getMessage());
+			}
+
 		}
 	}
 

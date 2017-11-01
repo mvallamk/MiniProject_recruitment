@@ -1,14 +1,12 @@
 package com.cg.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Candidate_Work_History")
 public class CandidateWorkHistory implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +17,8 @@ public class CandidateWorkHistory implements Serializable
 	private String contactPerson;
 	private String positionHeld;
 	private String companyName;
-	private LocalDate employmentFrom;
-	private LocalDate employmentTo;
+	private Date employmentFrom;
+	private Date employmentTo;
 	private String reasonForLeaving;
 	private String responsibilities;
 	private String hrRepName;
@@ -61,16 +59,16 @@ public class CandidateWorkHistory implements Serializable
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-	public LocalDate getEmploymentFrom() {
+	public Date getEmploymentFrom() {
 		return employmentFrom;
 	}
-	public void setEmploymentFrom(LocalDate employmentFrom) {
+	public void setEmploymentFrom(Date employmentFrom) {
 		this.employmentFrom = employmentFrom;
 	}
-	public LocalDate getEmploymentTo() {
+	public Date getEmploymentTo() {
 		return employmentTo;
 	}
-	public void setEmploymentTo(LocalDate employmentTo) {
+	public void setEmploymentTo(Date employmentTo) {
 		this.employmentTo = employmentTo;
 	}
 	public String getReasonForLeaving() {

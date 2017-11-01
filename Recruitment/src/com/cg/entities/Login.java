@@ -1,12 +1,17 @@
 package com.cg.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Login {
+public class Login implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5468237997249019694L;
 
 	@Id
 	String loginId;

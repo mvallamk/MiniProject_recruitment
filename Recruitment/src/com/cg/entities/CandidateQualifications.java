@@ -1,14 +1,13 @@
 package com.cg.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Candidate_Qualifications")
+
 public class CandidateQualifications implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -18,9 +17,9 @@ public class CandidateQualifications implements Serializable
 	private String specializationArea;
 	private String collegeName;
 	private String universityName;
-	private LocalDate yearOfPassing;
-	private float percentage;
-	private String candidateId;
+	private Date yearOfPassing;
+	private double percentage;
+	private String candidate;
 	public String getQualificationId() {
 		return qualificationId;
 	}
@@ -51,23 +50,23 @@ public class CandidateQualifications implements Serializable
 	public void setUniversityName(String universityName) {
 		this.universityName = universityName;
 	}
-	public LocalDate getYearOfPassing() {
+	public Date getYearOfPassing() {
 		return yearOfPassing;
 	}
-	public void setYearOfPassing(LocalDate yearOfPassing) {
+	public void setYearOfPassing(Date yearOfPassing) {
 		this.yearOfPassing = yearOfPassing;
 	}
-	public float getPercentage() {
+	public double getPercentage() {
 		return percentage;
 	}
-	public void setPercentage(float percentage) {
+	public void setPercentage(double percentage) {
 		this.percentage = percentage;
 	}
-	public String getCandidateId() {
-		return candidateId;
+	public String getCandidate() {
+		return candidate;
 	}
-	public void setCandidateId(String candidateId) {
-		this.candidateId = candidateId;
+	public void setCandidate(String candidate) {
+		this.candidate = candidate;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -79,7 +78,7 @@ public class CandidateQualifications implements Serializable
 				+ ", specializationArea=" + specializationArea
 				+ ", collegeName=" + collegeName + ", universityName="
 				+ universityName + ", yearOfPassing=" + yearOfPassing
-				+ ", percentage=" + percentage + ", candidateId=" + candidateId
+				+ ", percentage=" + percentage + ", candidateId=" + candidate
 				+ "]";
 	}
 

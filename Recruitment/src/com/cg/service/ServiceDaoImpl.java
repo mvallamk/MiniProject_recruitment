@@ -10,9 +10,10 @@ import com.cg.dao.ILoginDao;
 import com.cg.dao.IUserDao;
 import com.cg.dao.LoginDaoImpl;
 import com.cg.dao.UserDaoImpl;
-
+import com.cg.entities.CandidatePersonal;
+import com.cg.entities.CandidateQualifications;
+import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.JobRequirements;
-
 import com.cg.entities.Login;
 import com.cg.exception.RecruitmentException;
 
@@ -25,11 +26,34 @@ public class ServiceDaoImpl implements IServiceDao {
 	ILoginDao loginDao=new LoginDaoImpl();
 
 	@Override
-	
-	
-	public List<JobRequirements> getJobs() 
+	public List<JobRequirements> getJobs() throws RecruitmentException 
 	{
 		return userDao.getJobs();
+	}
+	
+	@Override
+	public void candidPersonal(CandidatePersonal candpers)
+			throws RecruitmentException {
+		userDao.beginTransaction();
+		userDao.candidPersonal(candpers);
+
+		
+	}
+
+	@Override
+	public void candidQualification(CandidateQualifications candQual) throws RecruitmentException {
+		userDao.beginTransaction();
+		userDao.candidQualification(candQual);
+		
+	}
+
+
+	@Override
+	public void candidWorkHistory(CandidateWorkHistory candHist)
+			throws RecruitmentException {
+		userDao.beginTransaction();
+		userDao.candidWorkHistory(candHist);
+		
 	}
 	
 
@@ -59,8 +83,5 @@ public class ServiceDaoImpl implements IServiceDao {
 				return false;
 		}
 	}
-
-
-
 
 }

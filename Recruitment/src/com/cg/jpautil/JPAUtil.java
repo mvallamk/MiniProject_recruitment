@@ -20,4 +20,4 @@ public class JPAUtil {
 		return entityManager;
 	}
 	
-}
+} 

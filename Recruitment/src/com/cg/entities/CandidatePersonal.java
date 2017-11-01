@@ -1,22 +1,30 @@
 package com.cg.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Candidate_Personal")
 public class CandidatePersonal implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4098198709663149494L;
 	@Id
 	private String candidateId;
 	private String candidateName;
 	private String address;
-	private LocalDate date;
+	//@Temporal(TemporalType.DATE)
+	private Date dob;
+	public Date getDob() {
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 	private String emailId;
 	private String contactNumber;
 	private String maritalStatus;
@@ -40,12 +48,7 @@ public class CandidatePersonal implements Serializable
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public LocalDate getDate() {
-		return date;
-	}
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+	
 	public String getEmailId() {
 		return emailId;
 	}
@@ -83,11 +86,12 @@ public class CandidatePersonal implements Serializable
 	public String toString() {
 		return "CandidatePersonal [candidateId=" + candidateId
 				+ ", candidateName=" + candidateName + ", address=" + address
-				+ ", date=" + date + ", emailId=" + emailId
+				+ ", date=" + dob + ", emailId=" + emailId
 				+ ", contactNumber=" + contactNumber + ", maritalStatus="
 				+ maritalStatus + ", Gender=" + Gender + ", passportNumber="
 				+ passportNumber + "]";
 	}
+
 	
 	
 	
