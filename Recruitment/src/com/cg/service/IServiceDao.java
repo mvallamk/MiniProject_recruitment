@@ -41,4 +41,12 @@ public interface IServiceDao {
 
 	//new Methods
 	public abstract void insertApplyJob(JobApplied jobApplied) throws RecruitmentException;
+	
+	//methods for admin
+	public List<HireDetails> companyWiseDetaisl();
+	public List<HireDetails> jobWiseDetaisl();
+
+
+
+
 }

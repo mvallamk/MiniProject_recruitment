@@ -28,6 +28,7 @@ public class ServiceDaoImpl implements IServiceDao {
 	IRecruitmentDAO userDao=new RecruitmentDAOImpl();
 	IRecruitmentDAO loginDao=new RecruitmentDAOImpl();
 	IRecruitmentDAO companyDao=new RecruitmentDAOImpl();
+	IRecruitmentDAO adminDao = new RecruitmentDAOImpl();
 
 	@Override
 	public List<JobRequirements> getJobs() throws RecruitmentException 
@@ -180,6 +181,18 @@ public class ServiceDaoImpl implements IServiceDao {
 	public void insertApplyJob(JobApplied jobApplied) throws RecruitmentException {
 		userDao.insertApplyJob(jobApplied);
 		
+	}
+
+	@Override
+	public List<HireDetails> companyWiseDetaisl() {
+		return adminDao.companyWiseDetaisl();
+		
+	}
+
+	@Override
+	public List<HireDetails> jobWiseDetaisl() {
+		
+		return adminDao.jobWiseDetaisl();
 	}	
 
 }

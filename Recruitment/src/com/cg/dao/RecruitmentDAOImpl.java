@@ -229,5 +229,19 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		commitTransaction();
 		
 	}
+	
+	@Override
+	public List<HireDetails> companyWiseDetaisl() {
+		
+		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.companyId");
+		return query.getResultList();
+		
+	}
+
+	@Override
+	public List<HireDetails> jobWiseDetaisl() {
+		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.jobId");
+		return query.getResultList();
+	}
 
 }

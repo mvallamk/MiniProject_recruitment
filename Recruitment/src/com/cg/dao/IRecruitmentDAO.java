@@ -46,4 +46,9 @@ public interface IRecruitmentDAO {
 	//new methods
 	public abstract void insertApplyJob(JobApplied jobApplied) throws RecruitmentException;
 
+	
+	//new methods for admin
+	public List<HireDetails> companyWiseDetaisl();
+	public List<HireDetails> jobWiseDetaisl();
+	
 }
