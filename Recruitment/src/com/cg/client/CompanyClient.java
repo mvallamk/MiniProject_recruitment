@@ -16,14 +16,14 @@ import com.cg.service.ServiceDaoImpl;
 public class CompanyClient {
 	
 	
-public CompanyClient()
+public CompanyClient(String companyId)
 {
 		IServiceDao service = new ServiceDaoImpl();
 		CompanyMaster companyMaster=new CompanyMaster();
 		JobRequirements jobRequirements=new JobRequirements();
 		Scanner sc=new Scanner(System.in);
 
-		String companyId;
+		
 		String companyName;	
 		String companyAddress;		
 		String contactPerson;		
@@ -43,8 +43,8 @@ public CompanyClient()
 		{
 		case 1:
 			System.out.println("Enter the company details");
-			System.out.println("Enter the company ID ");
-			companyId=sc.next();
+			//System.out.println("Enter the company ID ");
+			//companyId=sc.next();
 			System.out.println("Enter the company name");
 			companyName=sc.next();
 			System.out.println("Enter the company address");
@@ -66,8 +66,7 @@ public CompanyClient()
 			}
 			break;
 		case 2:
-			System.out.println("Enter the company ID of your company");
-			companyId=sc.next();
+			
 			companyMaster=service.getCompany(companyId);
 			System.out.println("Choose the company detail to be updated"); 
 			System.out.println("1.Company Name");
@@ -106,8 +105,7 @@ public CompanyClient()
 			}
 			break;
 		case 3:
-			System.out.println("Enter the company ID of your company");
-			companyId=sc.next();
+			
 			companyMaster=service.getCompany(companyId);
 			jobRequirements.setCompanyId(companyMaster.getCompanyId());
 			System.out.println("Enter the Job ID for the job");
@@ -141,14 +139,14 @@ public CompanyClient()
 			{
 
 			case 1:
-				System.out.println("Enter Qualification (HSC,SSC,GRAD,BE)");
+				System.out.println("Enter Qualification (hsc,ssc,grad,be)");
 				String qual=sc.next();
 				//qual=qual.toLowerCase()
 				jobList=service.getCandidateByQual(qual);
 
 				break;
 			case 2:
-				System.out.println("Enter Position (SE- Software Engineer, SSE- Senior Software Engineer, C- Consultant)");
+				System.out.println("Enter Position (se- Software Engineer, sse- Senior Software Engineer, c- Consultant)");
 				String pos=sc.next();
 				jobList=service.getCandidateByPosition(pos);
 				break;

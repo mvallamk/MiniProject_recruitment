@@ -43,7 +43,7 @@ public class Client {
 				}
 				else if(login.getType()=='C')
 				{
-					CompanyClient companyClient=new CompanyClient();
+					CompanyClient companyClient=new CompanyClient(login.getLoginId());
 				}
 				else if(login.getType()=='A')
 				{
