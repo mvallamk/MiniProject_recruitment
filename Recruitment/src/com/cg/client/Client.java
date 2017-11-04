@@ -13,23 +13,29 @@ public class Client {
 	{
 		IServiceDao serviceDao=new ServiceDaoImpl();
 		
+		Scanner sc=new Scanner(System.in);
+		String lop=null;
+		do
+		{
 		System.out.println("Online Recruitment Management System");
 		System.out.println("1. Login");
 		System.out.println("2. Signup");
 		
-		
-		Scanner sc=new Scanner(System.in);
 		
 		int choice=sc.nextInt();
 		switch(choice)
 		{
 		case 1:
 			Login login=new Login();
+			String log=null;
+			
 			System.out.println("Enter UserID:");
 			login.setLoginId(sc.next());
 			System.out.println("Enter Password:");
 			login.setPassword(sc.next());
 			boolean isValid=serviceDao.validateLoginDetails(login.getLoginId(), login.getPassword());
+			do
+			{
 			if(isValid)
 			{
 				Login temp=serviceDao.getLoginDetails(login.getLoginId());
@@ -54,7 +60,12 @@ public class Client {
 			{
 				System.out.println("Invalid Credentials");
 			}
+			
+			System.out.println("Do you want to continue?Enter :Yes/No");
+			log=sc.next();
+			}while(log.equals("Yes"));
 			break;
+			
 		case 2:
 			System.out.println("Choose the Valid Option:");
 			System.out.println("1. User");
@@ -92,6 +103,9 @@ public class Client {
 			default:
 				System.out.println("Invalid Choice");
 		}
+		System.out.println("Do you want to continue?Enter: Yes/No");
+		 lop=sc.next();
+		}while(lop.equals("Yes"));
 		
 		sc.close();
 	}
