@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
+import com.cg.entities.HireDetails;
 import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
 import com.cg.exception.RecruitmentException;
@@ -163,23 +164,31 @@ public CompanyClient(String companyId)
 		case 5:
 			System.out.println("List of Candidate Applications:");
 			for (JobApplied appliedCandidatesList:service.getAllAppliedCandidates())
-				System.out.println(appliedCandidatesList);
+				{System.out.println(appliedCandidatesList);
 
-			System.out.println("Hire from above list [enter : yes/no]:");
+			System.out.println("Hire this candidate? [enter : yes/no]:");
 			String hireChoice = sc.next();
 
 			if(hireChoice.equals("yes"))
 			{
-				System.out.println("Enter candidate id");
+				String candidateId = appliedCandidatesList.getCandidateId();
 				LocalDate dateOfHire = LocalDate.now();
+                String compId = appliedCandidatesList.getCompId();
+                String jobId = appliedCandidatesList.getJobId();
+                
+                HireDetails hiredetails = new HireDetails(jobId, candidateId, dateOfHire, compId);
+				
+				try {
+					service.addHiredCandidates(hiredetails);
+					System.out.println(candidateId+" hired");
+				} catch (RecruitmentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 
 
-				//code to be added for getting comppanyId of applied candidate
-				//HireDetails hiredCandidates = new HireDetails()
-				//service.addHiredCandidates();
-
-
-			}
+			}}
 
 			break;
 		}
