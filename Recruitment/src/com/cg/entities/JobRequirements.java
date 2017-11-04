@@ -9,7 +9,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Job_Requirements")
-@NamedQueries(value = {@NamedQuery(name = "job.getAll", query = "SELECT b FROM JobRequirements b")})
+@NamedQueries({
+	@NamedQuery(name = "job.getAll", query = "SELECT b FROM JobRequirements b"),
+	@NamedQuery(name = "qual.getAll", query = "SELECT b FROM JobRequirements b where b.qualificationRequired='hsc'"),
+	@NamedQuery(name = "position.getAll", query = "SELECT b FROM JobRequirements b where b.positionRequired='se'"),
+	@NamedQuery(name = "loc.getAll", query = "SELECT b FROM JobRequirements b where b.jobLocation='pune'"),
+	@NamedQuery(name = "exp.getAll", query = "SELECT b FROM JobRequirements b where b.experienceRequired=5")
+	})
+
 public class JobRequirements 
 {
 	@Id
