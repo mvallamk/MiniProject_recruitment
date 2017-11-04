@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.apache.log4j.Logger;
-
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
@@ -22,29 +20,25 @@ import com.cg.jpautil.JPAUtil;
 public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	EntityManager entityManager=JPAUtil.getEntityManager();
 	
-	private static Logger logger = Logger.getLogger(com.cg.dao.RecruitmentDAOImpl.class);
+	
 	
 	@Override
 	public void addCompanyDetails(CompanyMaster companyMaster) {
-		entityManager.persist(companyMaster);
-		logger.info("Company details are added successfully");
+		entityManager.persist(companyMaster);		
 	}
 
 	@Override
 	public void updateCompanyDetails(CompanyMaster companyMaster) {
 		entityManager.merge(companyMaster);
-		logger.info("Company details are updated successfully");
 	}
 
 	@Override
 	public void postJobRequirements(JobRequirements jobRequirements) {
 		entityManager.persist(jobRequirements);	
-		logger.info("Job requirements are posted successfully");
 	}
 	
 	@Override
 	public CompanyMaster getCompany(String companyId) {
-		logger.info("Method to retrieve company details");
 		return entityManager.find(CompanyMaster.class, companyId);	
 	}
 
@@ -61,7 +55,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		 TypedQuery<CandidateWorkHistory> query=entityManager.createQuery("select candidateWorkHistory From CandidateWorkHistory candidateWorkHistory  where candidateWorkHistory.positionHeld=:pPos",CandidateWorkHistory.class);
 			query.setParameter("pPos", pos);
 			List<CandidateWorkHistory> canList=query.getResultList();
-			logger.info("Candidate list is retrieved successfully by position");
 			return canList;
 	}
 
@@ -70,17 +63,17 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		Query query=entityManager.createNativeQuery("select * from candidateworkhistory where (select (employmentto-employmentfrom)/365 from candidateworkhistory)>="+exp,CandidateWorkHistory.class);
 		//query.setParameter("pCustomerName", customerName);
 		List<CandidateWorkHistory> accList=query.getResultList();
-		logger.info("Candidate list by experience is retrieved successfully");
 		return accList;
 	}
 
 	@Override
 	public List<JobApplied> getAllAppliedCandidates() {
 		
-			TypedQuery<JobApplied> query = entityManager.createQuery("SELECT jobApplied FROM JobApplied jobApplied ",JobApplied.class);
+
+		TypedQuery<JobApplied> query = entityManager.createQuery("SELECT jobApplied FROM JobApplied jobApplied ",JobApplied.class);
 		@SuppressWarnings("unchecked")
 		List<JobApplied> appliedCandidatesList = query.getResultList();
-		logger.info("Candidate list of all candidates applied for the jobs is retrieved successfully");
+		//logger.info("Candidate list of all candidates applied for the jobs is retrieved successfully");
 		return appliedCandidatesList;
 	}
 
@@ -89,7 +82,7 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	@Override
 	public void addHiredCandidates(HireDetails hiredetails) {
 		entityManager.persist(hiredetails);	
-		logger.info("Candidate details of  hired candidates are inserted successfully");
+		
 	}
 	
 
@@ -99,7 +92,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		{
 		entityManager.persist(loginSignup);
 		entityManager.getTransaction().commit();
-		logger.info("User login credentials are inserted successfully");
 		}
 		catch(Exception e)
 		{
@@ -110,7 +102,7 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 
 	@Override
 	public Login getLoginDetails(String loginId) {
-		logger.info("Method to get the login credentials");
+		
 		return entityManager.find(Login.class, loginId);
 	}
 	
@@ -120,12 +112,10 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		TypedQuery<JobRequirements> query = entityManager.createQuery("SELECT jobs FROM JobRequirements jobs", JobRequirements.class);
 		try
 		{
-			logger.info("Method to get the job list");
 			return query.getResultList();
 		}
 		catch(Exception e)
 		{
-			logger.info("Job list retrieval failed");
 			throw new RecruitmentException("Cant get jobs");
 		}
 
@@ -135,7 +125,7 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	public void beginTransaction() 
 	{
 		entityManager.getTransaction().begin();
-		logger.info("Transaction began successfully");
+
 	}
 
 	@Override
@@ -144,7 +134,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		try
 		{
 			entityManager.getTransaction().commit();
-			logger.info("Transaction committed successfully");
 		}
 		catch(Exception e)
 		{
@@ -160,7 +149,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 			System.out.println(candpers);
 			entityManager.persist(candpers);
 			entityManager.getTransaction().commit();
-			logger.info("Details of the candidate are inserted successfully");
 		}
 		catch(Exception e)
 		{
@@ -179,7 +167,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		{
 			entityManager.persist(candQual);
 			entityManager.getTransaction().commit();
-			logger.info("Candidate Qualification is inserted successfully");
 		}
 		catch(Exception e)
 		{
@@ -195,7 +182,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		{
 			entityManager.persist(candHist);
 			entityManager.getTransaction().commit();
-			logger.info("Candidate work history is inserted successfully");
 		}
 		catch(Exception e)
 		{
@@ -211,7 +197,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
     TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.qualificationRequired=:pQual",JobRequirements.class);
 		query.setParameter("pQual", qual);
 		List<JobRequirements> accList=query.getResultList();
-		logger.info("Job list is retrieved successfully by qualification");
 		return accList;
 	}
 
@@ -220,7 +205,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.positionRequired=:pPos",JobRequirements.class);
 			query.setParameter("pPos", pos);
 			List<JobRequirements> accList=query.getResultList();
-			logger.info("Job list is retrieved successfully by position");
 			return accList;
 	}
 
@@ -229,7 +213,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.experienceRequired<=:pExp",JobRequirements.class);
 			query.setParameter("pExp", exp);
 			List<JobRequirements> accList=query.getResultList();
-			logger.info("Job list is retrieved successfully by experience");
 			return accList;
 	}
 
@@ -238,7 +221,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		 TypedQuery<JobRequirements> query=entityManager.createQuery("select jobRequirements From JobRequirements jobRequirements where jobRequirements.jobLocation=:pLoc",JobRequirements.class);
 			query.setParameter("pLoc", loc);
 			List<JobRequirements> accList=query.getResultList();
-			logger.info("Job list is retrieved successfully by location");
 			return accList;
 	}
 
@@ -247,14 +229,13 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 		beginTransaction();
 		entityManager.persist(jobApplied);
 		commitTransaction();
-		logger.info("Job details for the applied jobs are inserted successfully");
+		
 	}
 	
-		@Override
+	@Override
 	public List<HireDetails> companyWiseDetaisl() {
 		
 		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.companyId");
-		logger.info("Reports generated on the basis of Company");
 		return query.getResultList();
 		
 	}
@@ -262,7 +243,6 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	@Override
 	public List<HireDetails> jobWiseDetaisl() {
 		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.jobId");
-		logger.info("Reports generated on the basis of Job");
 		return query.getResultList();
 	}
 
