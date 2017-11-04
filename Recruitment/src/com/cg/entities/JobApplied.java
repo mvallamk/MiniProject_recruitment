@@ -15,19 +15,28 @@ public class JobApplied implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	private int id;
 	private String jobId;
 	private String candidateId;
+	private String compId;
 	
+	public String getCompId() {
+		return compId;
+	}
+
+	public void setCompId(String compId) {
+		this.compId = compId;
+	}
+
 	public JobApplied() {
 		super();
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -55,9 +64,11 @@ public class JobApplied implements Serializable
 
 	@Override
 	public String toString() {
-		return "JobApplied [jobId=" + jobId + ", candidateId=" + candidateId
-				+ "]";
+		return "JobApplied [id=" + id + ", jobId=" + jobId + ", candidateId="
+				+ candidateId + ", compId=" + compId + "]";
 	}
+
+	
 	
 	
 	

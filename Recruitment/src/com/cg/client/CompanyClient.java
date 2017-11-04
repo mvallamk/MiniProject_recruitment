@@ -8,12 +8,16 @@ import com.cg.entities.CandidateWorkHistory;
 import com.cg.entities.CompanyMaster;
 import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
+import com.cg.exception.RecruitmentException;
 import com.cg.service.IServiceDao;
 import com.cg.service.ServiceDaoImpl;
 
 
 public class CompanyClient {
-	public static void main(String[] args) {
+	
+	
+public CompanyClient()
+{
 		IServiceDao service = new ServiceDaoImpl();
 		CompanyMaster companyMaster=new CompanyMaster();
 		JobRequirements jobRequirements=new JobRequirements();
@@ -54,7 +58,12 @@ public class CompanyClient {
 
 			companyMaster=new CompanyMaster(companyId,companyName,companyAddress,
 					contactPerson,emailId,contactNumber);
-			service.addCompanyDetails(companyMaster);
+			try {
+				service.addCompanyDetails(companyMaster);
+			} catch (RecruitmentException e) {
+			
+			 System.out.println(e.getMessage());
+			}
 			break;
 		case 2:
 			System.out.println("Enter the company ID of your company");
@@ -90,7 +99,11 @@ public class CompanyClient {
 				companyMaster.setContactNumber(sc.next());
 				break;
 			}
-			service.updateCompanyDetails(companyMaster);
+			try {
+				service.updateCompanyDetails(companyMaster);
+			} catch (RecruitmentException e) {
+				 System.out.println(e.getMessage());
+			}
 			break;
 		case 3:
 			System.out.println("Enter the company ID of your company");
@@ -111,7 +124,11 @@ public class CompanyClient {
 			jobRequirements.setJobLocation(sc.next());
 			System.out.println("Enter the the job description");
 			jobRequirements.setJobDescription(sc.next());
-			service.postJobRequirements(jobRequirements);
+			try {
+				service.postJobRequirements(jobRequirements);
+			} catch (RecruitmentException e) {
+				 System.out.println(e.getMessage());
+			}
 			break;
 		case 4:
 			System.out.println("1. By Qualification");

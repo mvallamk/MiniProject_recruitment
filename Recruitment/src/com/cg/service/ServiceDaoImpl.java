@@ -7,8 +7,10 @@ import com.cg.dao.CompanyDaoImpl;
 import com.cg.dao.IAdminDao;
 import com.cg.dao.ICompanyDao;
 import com.cg.dao.ILoginDao;
+import com.cg.dao.IRecruitmentDAO;
 import com.cg.dao.IUserDao;
 import com.cg.dao.LoginDaoImpl;
+import com.cg.dao.RecruitmentDAOImpl;
 import com.cg.dao.UserDaoImpl;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
@@ -23,10 +25,9 @@ import com.cg.exception.RecruitmentException;
 
 public class ServiceDaoImpl implements IServiceDao {
 	
-	IUserDao userDao=new UserDaoImpl();
-	IAdminDao adminDao=new AdminDaoImpl();
-	ICompanyDao companyDao=new CompanyDaoImpl();
-	ILoginDao loginDao=new LoginDaoImpl();
+	IRecruitmentDAO userDao=new RecruitmentDAOImpl();
+	IRecruitmentDAO loginDao=new RecruitmentDAOImpl();
+	IRecruitmentDAO companyDao=new RecruitmentDAOImpl();
 
 	@Override
 	public List<JobRequirements> getJobs() throws RecruitmentException 
@@ -62,20 +63,20 @@ public class ServiceDaoImpl implements IServiceDao {
 
 	
 	@Override
-	public void addCompanyDetails(CompanyMaster companyMaster) {
+	public void addCompanyDetails(CompanyMaster companyMaster) throws RecruitmentException {
 		companyDao.beginTransaction();
 		companyDao.addCompanyDetails(companyMaster);	
 		companyDao.commitTransaction();
 	}
 	
 	@Override
-	public void updateCompanyDetails(CompanyMaster companyMaster) {
+	public void updateCompanyDetails(CompanyMaster companyMaster) throws RecruitmentException {
 		companyDao.beginTransaction();
 		companyDao.updateCompanyDetails(companyMaster);	
 		companyDao.commitTransaction();
 	}
 	@Override
-	public void postJobRequirements(JobRequirements jobRequirements) {
+	public void postJobRequirements(JobRequirements jobRequirements) throws RecruitmentException {
 		companyDao.beginTransaction();
 		companyDao.postJobRequirements(jobRequirements);
 		companyDao.commitTransaction();
@@ -157,15 +158,27 @@ public class ServiceDaoImpl implements IServiceDao {
 
 	@Override
 	public List<JobApplied> getAllAppliedCandidates() {
-		// TODO Auto-generated method stub
+		// 
 		return companyDao.getAllAppliedCandidates() ;
 	}
 
 	@Override
-	public void addHiredCandidates(HireDetails hiredetails) {
+	public void addHiredCandidates(HireDetails hiredetails) throws RecruitmentException {
 		companyDao.beginTransaction();
 		companyDao.addHiredCandidates(hiredetails);	
 		companyDao.commitTransaction();
+		
+	}
+
+	@Override
+	public Login getLoginDetails(String loginId) {
+		
+		return loginDao.getLoginDetails(loginId);
+	}
+
+	@Override
+	public void insertApplyJob(JobApplied jobApplied) throws RecruitmentException {
+		userDao.insertApplyJob(jobApplied);
 		
 	}	
 

@@ -9,13 +9,21 @@ import java.util.Scanner;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
 import com.cg.exception.RecruitmentException;
 import com.cg.service.ServiceDaoImpl;
 
 public class UserClient {
-	public static void main(String[] args) 
+	
+	public UserClient()
 	{
+		
+	}
+	
+	public UserClient(String candID)
+	{
+		//System.out.println("yay");
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		ServiceDaoImpl service =new ServiceDaoImpl();
 		CandidatePersonal candPers=new CandidatePersonal();
@@ -25,16 +33,28 @@ public class UserClient {
 		
 		Scanner sc=new Scanner(System.in);
 		int swtch;
-		String candID;
+		//String candID;
 		System.out.println("1.Add Resume");
 		System.out.println("2.Modify Resume");
 		System.out.println("3.Search jobs ");
-		System.out.println("4.Apply Job");
+		System.out.println("4.Apply For Job");
 		System.out.println("Enter your choice");
 		System.out.println("-----------------------");
 		swtch=sc.nextInt();
 		switch(swtch)
 		{
+		case 4:
+			System.out.println("Enter job ID :");
+			String jobID=sc.next();
+			JobApplied jobApplied=new JobApplied();
+			jobApplied.setJobId(jobID);
+			jobApplied.setCandidateId(candID);
+			try {
+				service.insertApplyJob(jobApplied);
+			} catch (RecruitmentException e1) {
+				System.out.println(e1.getMessage());
+			}
+			break;
 		case 3:
 			System.out.println("1. By Qualification");
 			System.out.println("2. By Position");
@@ -47,14 +67,14 @@ public class UserClient {
 			{
 			
 			case 1:
-				System.out.println("Enter Qualification (HSC,SSC,GRAD,BE)");
+				System.out.println("Enter Qualification (hsc,ssc,grad,be)");
 				String qual=sc.next();
 				//qual=qual.toLowerCase()
 				jobList=service.getJobByQual(qual);
 			
 				break;
 			case 2:
-				System.out.println("Enter Position (SE- Software Engineer, SSE- Senior Software Engineer, C- Consultant)");
+				System.out.println("Enter Position (se- Software Engineer, sse- Senior Software Engineer, c- Consultant)");
 				String pos=sc.next();
 				jobList=service.getJobByPosition(pos);
 				break;
@@ -72,8 +92,7 @@ public class UserClient {
 			System.out.println(jobList);
 			break;
 		case 1:
-			System.out.println("Enter Candidate Id");
-			candID=sc.next();
+		
 			candPers.setCandidateId(candID);
 			candQual.setCandidate(candID);
 			candWork.setCandidateId(candID);
@@ -91,7 +110,7 @@ public class UserClient {
 			System.out.println("Enter mail id");
 			String mail = sc.next();
 			candPers.setEmailId(mail);
-			System.out.println("Enter Contat Number");
+			System.out.println("Enter Contact Number");
 			String phone = sc.next();
 			candPers.setContactNumber(phone);
 			System.out.println("Enter Marital Status");
@@ -166,20 +185,22 @@ public class UserClient {
 			LocalDate empTo1 =LocalDate.parse(empT,dtf);
 			Date empTo=Date.valueOf(empTo1);
 			candWork.setEmploymentTo(empTo);
-			System.out.println("Enter Raeson for Leaving");
+			System.out.println("Enter Reason for Leaving");
 			String reasonLeav = sc.next();
 			candWork.setReasonForLeaving(reasonLeav);
 			System.out.println("Enter Responsibilities");
 			String respon = sc.next();
 			candWork.setResponsibilities(respon);
-			System.out.println("Enter Hr rep's Name");
+			System.out.println("Enter HR rep's Name");
 			String hrName = sc.next();
 			candWork.setHrRepName(hrName);
-			System.out.println("Enter Hr rep's Contact Number");
+			System.out.println("Enter HR rep's Contact Number");
 			String hrNumber = sc.next();
 			candWork.setHrRepContactNumber(hrNumber);
 			try {
 				service.candidWorkHistory(candWork);
+				
+				System.out.println("Details Successfully Inserted !!!");
 			} catch (RecruitmentException e) {			
 				System.out.println(e.getMessage());
 			}

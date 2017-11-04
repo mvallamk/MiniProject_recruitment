@@ -17,6 +17,7 @@ public class Client {
 		System.out.println("1. Login");
 		System.out.println("2. Signup");
 		
+		
 		Scanner sc=new Scanner(System.in);
 		
 		int choice=sc.nextInt();
@@ -31,7 +32,23 @@ public class Client {
 			boolean isValid=serviceDao.validateLoginDetails(login.getLoginId(), login.getPassword());
 			if(isValid)
 			{
-				System.out.println("Welcome");
+				Login temp=serviceDao.getLoginDetails(login.getLoginId());
+				login.setType(temp.getType());
+				
+				if(login.getType()=='U')
+				{
+			
+					UserClient userClient=new UserClient(login.getLoginId());
+					
+				}
+				else if(login.getType()=='C')
+				{
+					CompanyClient companyClient=new CompanyClient();
+				}
+				else if(login.getType()=='A')
+				{
+					AdminClient adminClient=new AdminClient();
+				}
 			}
 			else
 			{

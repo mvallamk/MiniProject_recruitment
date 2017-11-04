@@ -8,6 +8,12 @@ import javax.persistence.Id;
 @Entity
 public class Login implements Serializable {
 
+	@Override
+	public String toString() {
+		return "Login [loginId=" + loginId + ", password=" + password
+				+ ", type=" + type + "]";
+	}
+
 	/**
 	 * 
 	 */
