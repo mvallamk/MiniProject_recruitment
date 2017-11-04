@@ -180,6 +180,7 @@ public class ServiceDaoImpl implements IServiceDao {
 	public void insertApplyJob(JobApplied jobApplied) throws RecruitmentException {
 		userDao.insertApplyJob(jobApplied);
 		
+		
 	}	
 
 }

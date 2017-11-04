@@ -5,10 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Company_Master")
+@NamedQueries(value = {@NamedQuery(name = "Company.getAll", query = "SELECT b FROM CompanyMaster b")})
 public class CompanyMaster implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
