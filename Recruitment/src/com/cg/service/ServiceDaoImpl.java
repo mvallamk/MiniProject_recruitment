@@ -181,7 +181,7 @@ public class ServiceDaoImpl implements IServiceDao {
 	public void insertApplyJob(JobApplied jobApplied) throws RecruitmentException {
 		userDao.insertApplyJob(jobApplied);
 		
-<<<<<<< HEAD
+
 	}
 
 	@Override
@@ -194,9 +194,8 @@ public class ServiceDaoImpl implements IServiceDao {
 	public List<HireDetails> jobWiseDetaisl() {
 		
 		return adminDao.jobWiseDetaisl();
-=======
-		
->>>>>>> 1965e679f69cded9b57cd282eaa8fd05da50b197
+
+
 	}	
 
 }
