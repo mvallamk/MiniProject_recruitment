@@ -37,7 +37,7 @@ public CompanyClient(String companyId)
 		System.out.println("1.Add Company Details");
 		System.out.println("2.Modify Company Details");	
 		System.out.println("3.Post Job Requirements");
-		System.out.println("4.Search and Hire Candidates");
+		System.out.println("4.Search Candidates");
 		System.out.println("5.Hire from applied Candidates");
 
 		choice=Integer.parseInt(sc.nextLine());
@@ -107,9 +107,11 @@ public CompanyClient(String companyId)
 			}
 			break;
 		case 3:
+			//System.out.println("heyyy");
+			//System.out.println(companyId);
 			
-			companyMaster=service.getCompany(companyId);
-			jobRequirements.setCompanyId(companyMaster.getCompanyId());
+			//companyMaster=service.getCompany(companyId);
+			jobRequirements.setCompanyId(companyId);
 			System.out.println("Enter the Job ID for the job");
 			jobRequirements.setJobID(sc.next());			
 			System.out.println("Enter the the job position required");

@@ -15,11 +15,14 @@ import com.cg.dao.UserDaoImpl;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.entities.CompWise;
 import com.cg.entities.CompanyMaster;
 import com.cg.entities.HireDetails;
 import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
+import com.cg.entities.JobWise;
 import com.cg.entities.Login;
+import com.cg.entities.MonthWise;
 import com.cg.exception.RecruitmentException;
 
 
@@ -185,17 +188,23 @@ public class ServiceDaoImpl implements IServiceDao {
 	}
 
 	@Override
-	public List<HireDetails> companyWiseDetaisl() {
+	public List<CompWise> companyWiseDetaisl() {
 		return adminDao.companyWiseDetaisl();
 		
 	}
 
 	@Override
-	public List<HireDetails> jobWiseDetaisl() {
+	public List<JobWise> jobWiseDetaisl() {
 		
 		return adminDao.jobWiseDetaisl();
 
 
+	}
+
+	@Override
+	public List<MonthWise> monthWiseDetaisl() {
+		
+		return adminDao.monthWiseDetaisl();
 	}	
 
 }

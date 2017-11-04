@@ -53,7 +53,7 @@ public class Client {
 				}
 				else if(login.getType()=='A')
 				{
-					AdminClient adminClient=new AdminClient();
+					AdminClient adminClient=new AdminClient(login.getLoginId());
 				}
 			}
 			else
@@ -61,7 +61,7 @@ public class Client {
 				System.out.println("Invalid Credentials");
 			}
 			
-			System.out.println("Do you want to continue to Login/ SignUp ?Enter :Yes/No");
+			System.out.println("Do you want to continue ?Enter :Yes/No");
 			log=sc.next();
 			}while(log.equals("Yes"));
 			break;
@@ -103,7 +103,7 @@ public class Client {
 			default:
 				System.out.println("Invalid Choice");
 		}
-		System.out.println("Do you want to continue ?Enter: Yes/No");
+		System.out.println("Do you want to continue to Login/ SignUp ?Enter: Yes/No");
 		 lop=sc.next();
 		}while(lop.equals("Yes"));
 		

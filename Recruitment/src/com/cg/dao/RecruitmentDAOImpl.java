@@ -11,11 +11,14 @@ import org.apache.log4j.Logger;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.entities.CompWise;
 import com.cg.entities.CompanyMaster;
 import com.cg.entities.HireDetails;
 import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
+import com.cg.entities.JobWise;
 import com.cg.entities.Login;
+import com.cg.entities.MonthWise;
 import com.cg.exception.RecruitmentException;
 import com.cg.jpautil.JPAUtil;
 
@@ -251,19 +254,27 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	}
 	
 		@Override
-	public List<HireDetails> companyWiseDetaisl() {
+	public List<CompWise> companyWiseDetaisl() {
 		
-		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.companyId");
+		Query query=entityManager.createNativeQuery("select company_id,count(*) as no_of_placed From hire_details GROUP BY company_id",CompWise.class);
 		logger.info("Reports generated on the basis of Company");
 		return query.getResultList();
 		
 	}
 
 	@Override
-	public List<HireDetails> jobWiseDetaisl() {
-		Query query=entityManager.createQuery("select count(*) From HireDetails hiredetails GROUP BY hireDetails.jobId");
+	public List<JobWise> jobWiseDetaisl() {
+		Query query=entityManager.createNativeQuery("select job_id,count(*)as no_of_placed From  hire_details GROUP BY job_id",JobWise.class);
 		logger.info("Reports generated on the basis of Job");
 		return query.getResultList();
 	}
+	
+	@Override
+	public List<MonthWise> monthWiseDetaisl() {
+		Query query=entityManager.createNativeQuery("select hire_date,candidate_id,company_id From  hire_details WHERE hire_date BETWEEN sysdate-30 AND sysdate",MonthWise.class);
+		logger.info("Reports generated on the basis of Job");
+		return query.getResultList();
+	}
+	
 
 }

@@ -5,11 +5,14 @@ import java.util.List;
 import com.cg.entities.CandidatePersonal;
 import com.cg.entities.CandidateQualifications;
 import com.cg.entities.CandidateWorkHistory;
+import com.cg.entities.CompWise;
 import com.cg.entities.CompanyMaster;
 import com.cg.entities.HireDetails;
 import com.cg.entities.JobApplied;
 import com.cg.entities.JobRequirements;
+import com.cg.entities.JobWise;
 import com.cg.entities.Login;
+import com.cg.entities.MonthWise;
 import com.cg.exception.RecruitmentException;
 
 public interface IRecruitmentDAO {
@@ -48,7 +51,8 @@ public interface IRecruitmentDAO {
 
 	
 	//new methods for admin
-	public List<HireDetails> companyWiseDetaisl();
-	public List<HireDetails> jobWiseDetaisl();
+	public List<CompWise> companyWiseDetaisl();
+	public List<JobWise> jobWiseDetaisl();
+	public List<MonthWise> monthWiseDetaisl();
 	
 }
