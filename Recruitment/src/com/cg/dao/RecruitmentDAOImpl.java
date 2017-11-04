@@ -69,9 +69,11 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	@Override
 	public List<JobApplied> getAllAppliedCandidates() {
 		
-		Query query = entityManager.createNamedQuery("getAllAppliedCandidates");
+
+		TypedQuery<JobApplied> query = entityManager.createQuery("SELECT jobApplied FROM JobApplied jobApplied ",JobApplied.class);
 		@SuppressWarnings("unchecked")
 		List<JobApplied> appliedCandidatesList = query.getResultList();
+		//logger.info("Candidate list of all candidates applied for the jobs is retrieved successfully");
 		return appliedCandidatesList;
 	}
 

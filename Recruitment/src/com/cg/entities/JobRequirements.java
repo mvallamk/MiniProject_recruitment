@@ -3,10 +3,13 @@ package com.cg.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Job_Requirements")
+@NamedQueries(value = {@NamedQuery(name = "job.getAll", query = "SELECT b FROM JobRequirements b")})
 public class JobRequirements 
 {
 	@Id

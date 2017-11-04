@@ -46,9 +46,12 @@ public class UserClient {
 		case 4:
 			System.out.println("Enter job ID :");
 			String jobID=sc.next();
+			System.out.println("Enter Company ID :");
+			String compId=sc.next();
 			JobApplied jobApplied=new JobApplied();
 			jobApplied.setJobId(jobID);
 			jobApplied.setCandidateId(candID);
+			jobApplied.setCompId(compId);
 			try {
 				service.insertApplyJob(jobApplied);
 			} catch (RecruitmentException e1) {
