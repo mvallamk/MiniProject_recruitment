@@ -17,9 +17,7 @@ public class Login implements Serializable {
 				+ ", type=" + type + "]";
 	}
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5468237997249019694L;
 
 	@Id

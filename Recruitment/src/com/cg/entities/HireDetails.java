@@ -67,7 +67,7 @@ public class HireDetails {
 	public HireDetails(String jobId, String candidateId,
 			Date hireDate, String companyId) {
 		super();
-		//this.srNo = srNo;
+		
 		this.jobId = jobId;
 		this.candidateId = candidateId;
 		this.hireDate = hireDate;
