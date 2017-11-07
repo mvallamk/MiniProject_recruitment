@@ -112,7 +112,7 @@ public class CandidateWorkHistory implements Serializable
 				+ employmentTo + ", reasonForLeaving=" + reasonForLeaving
 				+ ", responsibilities=" + responsibilities + ", hrRepName="
 				+ hrRepName + ", hrRepContactNumber=" + hrRepContactNumber
-				+ "]";
+				+ "]"+"\n";
 	}
 	
 	

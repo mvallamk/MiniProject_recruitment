@@ -62,6 +62,7 @@ public CompanyClient(String companyId)
 					contactPerson,emailId,contactNumber);
 			try {
 				service.addCompanyDetails(companyMaster);
+				System.out.println("Company Registered Successfully!!");
 			} catch (RecruitmentException e) {
 			
 			 System.out.println(e.getMessage());
@@ -102,15 +103,13 @@ public CompanyClient(String companyId)
 			}
 			try {
 				service.updateCompanyDetails(companyMaster);
+				System.out.println("Details updated Successfully!!");
 			} catch (RecruitmentException e) {
 				 System.out.println(e.getMessage());
 			}
 			break;
 		case 3:
-			//System.out.println("heyyy");
-			//System.out.println(companyId);
 			
-			//companyMaster=service.getCompany(companyId);
 			jobRequirements.setCompanyId(companyId);
 			System.out.println("Enter the Job ID for the job");
 			jobRequirements.setJobID(sc.next());			
@@ -133,7 +132,7 @@ public CompanyClient(String companyId)
 			}
 			break;
 		case 4:
-			//System.out.println("1. By Qualification");
+			
 			System.out.println("1. By Position");
 			System.out.println("2. By Experience (in years)");
 
@@ -179,7 +178,7 @@ public CompanyClient(String companyId)
 					service.addHiredCandidates(hiredetails);
 					System.out.println(candidateId+" hired");
 				} catch (RecruitmentException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				

@@ -79,7 +79,7 @@ public class CompanyDaoImpl implements ICompanyDao {
 	@Override
 	public List<CandidateWorkHistory> getCandidateByExperience(int exp) {
 		Query query=entityManager.createNativeQuery("select * from candidateworkhistory where (select (employmentto-employmentfrom)/365 from candidateworkhistory)>="+exp,CandidateWorkHistory.class);
-		//query.setParameter("pCustomerName", customerName);
+		
 		List<CandidateWorkHistory> accList=query.getResultList();
 		logger.info("Candidate list by experience is retrieved successfully");
 		return accList;

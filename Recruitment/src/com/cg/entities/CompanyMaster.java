@@ -104,7 +104,7 @@ public class CompanyMaster implements Serializable
 		return "Company_Master [companyId=" + companyId + ", companyName="
 				+ companyName + ", companyAddress=" + companyAddress
 				+ ", contactPerson=" + contactPerson + ", emailId=" + emailId
-				+ ", contactNumber=" + contactNumber + "]";
+				+ ", contactNumber=" + contactNumber + "]"+"\n";
 	}
 
 }

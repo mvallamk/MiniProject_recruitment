@@ -18,7 +18,7 @@ public class MonthWise {
 	@Override
 	public String toString() {
 		return "MonthWise [candidateId=" + candidateId + ", hireDate="
-				+ hireDate + ", companyId=" + companyId + "]";
+				+ hireDate + ", companyId=" + companyId + "]"+"\n";
 	}
 	
 }

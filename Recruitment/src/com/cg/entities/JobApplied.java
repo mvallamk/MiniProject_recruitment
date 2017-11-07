@@ -68,7 +68,7 @@ public class JobApplied implements Serializable
 	@Override
 	public String toString() {
 		return "JobApplied [id=" + id + ", jobId=" + jobId + ", candidateId="
-				+ candidateId + ", compId=" + compId + "]";
+				+ candidateId + ", compId=" + compId + "]"+"\n";
 	}
 
 	

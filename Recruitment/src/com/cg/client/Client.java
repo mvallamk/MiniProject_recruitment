@@ -97,7 +97,7 @@ public class Client {
 			catch(RecruitmentException re)
 			{
 				
-				//re.getMessage();
+				
 				System.out.println(re.getMessage());
 			}
 			break;

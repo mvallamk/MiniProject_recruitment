@@ -16,7 +16,7 @@ public class JobWise {
 	Long count;
 	@Override
 	public String toString() {
-		return "JobWise [jobId=" + jobId + ", count=" + count + "]";
+		return "JobWise [jobId=" + jobId + ", count=" + count + "]"+"\n";
 	}
 	
 	

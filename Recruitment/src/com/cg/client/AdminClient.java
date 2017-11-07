@@ -45,24 +45,18 @@ public class AdminClient {
 		
 	case 2:
 		System.out.println("CompanyWise Placements report:");
-		//List comp=new ArrayList();
-				
-		//List compList=new ArrayList<CompWise>();
-		//ArrayList<CompWise> compList;
+		
 		List<CompWise> compList=service.companyWiseDetaisl();
 				
-		//for ( CompWise abc: compList  )
+		
 			System.out.println(compList);
 			break;
 	case 1:
 		System.out.println("Last Month's Placements report:");
-		//List comp=new ArrayList();
-				
-		//List compList=new ArrayList<CompWise>();
-		//ArrayList<CompWise> compList;
+		
 		List<MonthWise> monthList=service.monthWiseDetaisl();
 				
-		//for ( CompWise abc: compList  )
+		
 			System.out.println(monthList);
 			break;
 	

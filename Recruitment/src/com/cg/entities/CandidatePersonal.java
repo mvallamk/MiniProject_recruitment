@@ -87,7 +87,7 @@ public class CandidatePersonal implements Serializable
 				+ ", date=" + dob + ", emailId=" + emailId
 				+ ", contactNumber=" + contactNumber + ", maritalStatus="
 				+ maritalStatus + ", Gender=" + Gender + ", passportNumber="
-				+ passportNumber + "]";
+				+ passportNumber + "]"+"\n";
 	}
 
 	

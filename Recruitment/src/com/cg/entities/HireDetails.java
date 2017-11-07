@@ -62,7 +62,7 @@ public class HireDetails {
 	public String toString() {
 		return "HireDetails [srNo=" + srNo + ", jobId=" + jobId
 				+ ", candidateId=" + candidateId + ", hireDate=" + hireDate
-				+ ", companyId=" + companyId + "]";
+				+ ", companyId=" + companyId + "]"+"\n";
 	}
 	public HireDetails(String jobId, String candidateId,
 			Date hireDate, String companyId) {

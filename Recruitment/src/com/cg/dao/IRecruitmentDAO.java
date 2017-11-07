@@ -19,8 +19,7 @@ public interface IRecruitmentDAO {
 	public void addCompanyDetails(CompanyMaster companyMaster);
 	public void updateCompanyDetails(CompanyMaster companyMaster);
 	public void postJobRequirements(JobRequirements jobRequirements);
-	//public void beginTransaction();
-	//public void commitTransaction();
+	
 	public CompanyMaster getCompany(String companyId); 
 
 
@@ -36,8 +35,7 @@ public interface IRecruitmentDAO {
     void beginTransaction();
     void commitTransaction() throws RecruitmentException;
     List<JobRequirements>getJobs() throws RecruitmentException;
-	//void beginTransaction();
-	//void commitTransaction() throws RecruitmentException;
+	
 	public abstract void candidPersonal(CandidatePersonal candpers) throws RecruitmentException;
 	public abstract void candidQualification(CandidateQualifications candQual) throws RecruitmentException;
 	public abstract void candidWorkHistory(CandidateWorkHistory candHist) throws RecruitmentException;
@@ -46,11 +44,11 @@ public interface IRecruitmentDAO {
 	public abstract List<JobRequirements> getJobByExperience(int exp);
 	public abstract List<JobRequirements> getJobByLocation(String loc);
 	
-	//new methods
+	
 	public abstract void insertApplyJob(JobApplied jobApplied) throws RecruitmentException;
 
 	
-	//new methods for admin
+	
 	public List<CompWise> companyWiseDetaisl();
 	public List<JobWise> jobWiseDetaisl();
 	public List<MonthWise> monthWiseDetaisl();
