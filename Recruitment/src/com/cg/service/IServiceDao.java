@@ -19,7 +19,6 @@ import com.cg.exception.RecruitmentException;
 
 public interface IServiceDao {
 	public abstract void signUp(Login loginSignup) throws RecruitmentException;
-	//public abstract boolean validateLoginDetails(String loginId);
 	boolean validateLoginDetails(String loginId, String password);
 	public abstract Login getLoginDetails(String loginId);
 
@@ -42,10 +41,10 @@ public interface IServiceDao {
 	public abstract List<JobApplied> getAllAppliedCandidates();
 	public abstract void addHiredCandidates(HireDetails hiredetails) throws RecruitmentException;
 
-	//new Methods
+	
 	public abstract void insertApplyJob(JobApplied jobApplied) throws RecruitmentException;
 	
-	//methods for admin
+	
 	public List<CompWise> companyWiseDetaisl();
 	public List<JobWise> jobWiseDetaisl();
 	public List<MonthWise> monthWiseDetaisl();

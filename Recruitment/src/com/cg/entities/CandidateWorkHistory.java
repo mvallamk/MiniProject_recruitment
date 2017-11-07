@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries(value = {@NamedQuery(name = "pos.getAll", query = "select candidateWorkHistory From CandidateWorkHistory candidateWorkHistory  where candidateWorkHistory.positionHeld='se'")})
-//@NamedQueries(value = {@NamedQuery(name = "pos.getAll", query = "select candidateWorkHistory From CandidateWorkHistory candidateWorkHistory  where candidateWorkHistory.='se'")})
+
 public class CandidateWorkHistory implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
@@ -112,7 +112,7 @@ public class CandidateWorkHistory implements Serializable
 				+ employmentTo + ", reasonForLeaving=" + reasonForLeaving
 				+ ", responsibilities=" + responsibilities + ", hrRepName="
 				+ hrRepName + ", hrRepContactNumber=" + hrRepContactNumber
-				+ "]";
+				+ "]"+"\n";
 	}
 	
 	

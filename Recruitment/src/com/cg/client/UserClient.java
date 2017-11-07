@@ -23,7 +23,6 @@ public class UserClient {
 	
 	public UserClient(String candID)
 	{
-		//System.out.println("yay");
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		ServiceDaoImpl service =new ServiceDaoImpl();
 		CandidatePersonal candPers=new CandidatePersonal();
@@ -33,7 +32,7 @@ public class UserClient {
 		
 		Scanner sc=new Scanner(System.in);
 		int swtch;
-		//String candID;
+		
 		System.out.println("1.Add Resume");
 		System.out.println("2.Modify Resume");
 		System.out.println("3.Search jobs ");
@@ -54,6 +53,7 @@ public class UserClient {
 			jobApplied.setCompId(compId);
 			try {
 				service.insertApplyJob(jobApplied);
+				System.out.println("Applied Successfully!!");
 			} catch (RecruitmentException e1) {
 				System.out.println(e1.getMessage());
 			}
@@ -107,9 +107,17 @@ public class UserClient {
 			candPers.setAddress(address);
 			System.out.println("Enter DOB in format yyyy-MM-dd");
 			String dateOfBirth = sc.next();
+			try
+			{
 			LocalDate dob1=LocalDate.parse(dateOfBirth,dtf);
 			Date dob=Date.valueOf(dob1);
 			candPers.setDob(dob);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Invalid Date");
+				break;
+			}
 			System.out.println("Enter mail id");
 			String mail = sc.next();
 			candPers.setEmailId(mail);
@@ -147,12 +155,21 @@ public class UserClient {
 			candQual.setCollegeName(colName);
 			System.out.println("Enter University Name");
 			String univName = sc.next();
+			
 			candQual.setUniversityName(univName);
+			try
+			{
 			System.out.println("Enter Year of Passing in format yyyy-MM-dd");
 			String passingYear = sc.next();
 			LocalDate yearPass1=LocalDate.parse(passingYear,dtf);
 			Date yearPass=Date.valueOf(yearPass1) ;
 			candQual.setYearOfPassing(yearPass);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Invalid Date");
+				break;
+			}
 			System.out.println("Enter Percentage");
 			double percent = sc.nextDouble();
 			candQual.setPercentage(percent);
@@ -178,6 +195,8 @@ public class UserClient {
 			System.out.println("Enter Company Name");
 			String compName = sc.next();
 			candWork.setCompanyName(compName);
+			try
+			{
 			System.out.println("Enter Employment from in format yyyy-MM-dd");
 			String emp = sc.next();
 			LocalDate empFrom1 =LocalDate.parse(emp,dtf);
@@ -188,6 +207,12 @@ public class UserClient {
 			LocalDate empTo1 =LocalDate.parse(empT,dtf);
 			Date empTo=Date.valueOf(empTo1);
 			candWork.setEmploymentTo(empTo);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Invalid Date");
+				break;
+			}
 			System.out.println("Enter Reason for Leaving");
 			String reasonLeav = sc.next();
 			candWork.setReasonForLeaving(reasonLeav);

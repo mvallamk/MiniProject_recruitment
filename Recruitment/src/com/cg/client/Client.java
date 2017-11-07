@@ -59,6 +59,7 @@ public class Client {
 			else
 			{
 				System.out.println("Invalid Credentials");
+				break;
 			}
 			
 			System.out.println("Do you want to continue ?Enter :Yes/No");
@@ -96,7 +97,7 @@ public class Client {
 			catch(RecruitmentException re)
 			{
 				
-				//re.getMessage();
+				
 				System.out.println(re.getMessage());
 			}
 			break;

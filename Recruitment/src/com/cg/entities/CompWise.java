@@ -16,7 +16,7 @@ public class CompWise {
 	
 	@Override
 	public String toString() {
-		return "CompWise [companyId=" + companyId + ", count=" + count + "]";
+		return "CompWise [companyId=" + companyId + ", count=" + count + "]"+"\n";
 	}
 
 

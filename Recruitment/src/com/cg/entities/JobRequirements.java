@@ -135,7 +135,7 @@ public class JobRequirements
 				+ ", experienceRequired=" + experienceRequired
 				+ ", qualificationRequired=" + qualificationRequired
 				+ ", jobLocation=" + jobLocation + ", jobDescription="
-				+ jobDescription + "]";
+				+ jobDescription + "]"+"\n";
 	}
 	
 	

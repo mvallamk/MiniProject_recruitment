@@ -272,7 +272,7 @@ public class RecruitmentDAOImpl implements IRecruitmentDAO {
 	@Override
 	public List<MonthWise> monthWiseDetaisl() {
 		Query query=entityManager.createNativeQuery("select hire_date,candidate_id,company_id From  hire_details WHERE hire_date BETWEEN sysdate-30 AND sysdate",MonthWise.class);
-		logger.info("Reports generated on the basis of Job");
+		logger.info("Reports generated for previous month");
 		return query.getResultList();
 	}
 	
