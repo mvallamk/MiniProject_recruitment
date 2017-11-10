@@ -28,7 +28,7 @@ public class CandidatePersonal implements Serializable
 	private String emailId;
 	private String contactNumber;
 	private String maritalStatus;
-	private String Gender;
+	private String gender;
 	private String passportNumber;
 	public String getCandidateId() {
 		return candidateId;
@@ -67,11 +67,12 @@ public class CandidatePersonal implements Serializable
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
+	
 	public String getGender() {
-		return Gender;
+		return gender;
 	}
 	public void setGender(String gender) {
-		Gender = gender;
+		this.gender = gender;
 	}
 	public String getPassportNumber() {
 		return passportNumber;
@@ -88,7 +89,7 @@ public class CandidatePersonal implements Serializable
 				+ ", candidateName=" + candidateName + ", address=" + address
 				+ ", date=" + dob + ", emailId=" + emailId
 				+ ", contactNumber=" + contactNumber + ", maritalStatus="
-				+ maritalStatus + ", Gender=" + Gender + ", passportNumber="
+				+ maritalStatus + ", Gender=" + gender + ", passportNumber="
 				+ passportNumber + "]";
 	}
 
