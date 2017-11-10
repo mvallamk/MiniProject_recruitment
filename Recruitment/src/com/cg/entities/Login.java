@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(value = {@NamedQuery(name = "Login.getAll", query = "SELECT b FROM CompanyMaster b")})
 public class Login implements Serializable {
 
 	@Override
@@ -14,9 +17,7 @@ public class Login implements Serializable {
 				+ ", type=" + type + "]";
 	}
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -5468237997249019694L;
 
 	@Id

@@ -1,5 +1,6 @@
 package com.cg.entities;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -17,19 +18,19 @@ public class HireDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="Sr_No")
-	private String srNo;
+	private int srNo;
 	@Column(name="job_id")
 	private String jobId;
 	@Column(name="candidate_id")
 	private String candidateId;
 	@Column(name="hire_Date")
-	private LocalDate hireDate;
+	private Date hireDate;
 	@Column(name="Company_Id")
 	private String companyId;
-	public String getSrNo() {
+	public int getSrNo() {
 		return srNo;
 	}
-	public void setSrNo(String srNo) {
+	public void setSrNo(int srNo) {
 		this.srNo = srNo;
 	}
 	public String getJobId() {
@@ -44,10 +45,10 @@ public class HireDetails {
 	public void setCandidateId(String candidateId) {
 		this.candidateId = candidateId;
 	}
-	public LocalDate getHireDate() {
+	public Date getHireDate() {
 		return hireDate;
 	}
-	public void setHireDate(LocalDate hireDate) {
+	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
 	public String getCompanyId() {
@@ -61,12 +62,12 @@ public class HireDetails {
 	public String toString() {
 		return "HireDetails [srNo=" + srNo + ", jobId=" + jobId
 				+ ", candidateId=" + candidateId + ", hireDate=" + hireDate
-				+ ", companyId=" + companyId + "]";
+				+ ", companyId=" + companyId + "]"+"\n";
 	}
 	public HireDetails(String jobId, String candidateId,
-			LocalDate hireDate, String companyId) {
+			Date hireDate, String companyId) {
 		super();
-		//this.srNo = srNo;
+		
 		this.jobId = jobId;
 		this.candidateId = candidateId;
 		this.hireDate = hireDate;

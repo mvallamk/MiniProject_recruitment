@@ -16,6 +16,7 @@
 	<classpathentry kind="lib" path="lib/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/asm-3.1.jar"/>
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/cglib-2.2.jar"/>
@@ -29,5 +30,9 @@
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/jta-1.1.jar"/>
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/ojdbc6.jar"/>
 	<classpathentry kind="lib" path="D:/Java_pt/Recruitment/Recruitment_new/Recruitment/lib/slf4j-api-1.6.1.jar"/>
+=======
+	<classpathentry kind="lib" path="log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/Users/akbansal/Desktop/junit-4.4.jar"/>
+>>>>>>> e21b61b74d06f4ff15f893161edb7ef5b8b0f220
 	<classpathentry kind="output" path="bin"/>
 </classpath>

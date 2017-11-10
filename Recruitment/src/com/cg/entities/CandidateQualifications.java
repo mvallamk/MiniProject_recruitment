@@ -79,7 +79,7 @@ public class CandidateQualifications implements Serializable
 				+ ", collegeName=" + collegeName + ", universityName="
 				+ universityName + ", yearOfPassing=" + yearOfPassing
 				+ ", percentage=" + percentage + ", candidateId=" + candidate
-				+ "]";
+				+ "]"+"\n";
 	}
 
 

@@ -5,8 +5,12 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries(value = {@NamedQuery(name = "pos.getAll", query = "select candidateWorkHistory From CandidateWorkHistory candidateWorkHistory  where candidateWorkHistory.positionHeld='se'")})
+
 public class CandidateWorkHistory implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
@@ -108,7 +112,7 @@ public class CandidateWorkHistory implements Serializable
 				+ employmentTo + ", reasonForLeaving=" + reasonForLeaving
 				+ ", responsibilities=" + responsibilities + ", hrRepName="
 				+ hrRepName + ", hrRepContactNumber=" + hrRepContactNumber
-				+ "]";
+				+ "]"+"\n";
 	}
 	
 	

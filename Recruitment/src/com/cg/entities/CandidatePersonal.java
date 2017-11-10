@@ -9,15 +9,13 @@ import javax.persistence.Id;
 @Entity
 public class CandidatePersonal implements Serializable
 {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -4098198709663149494L;
 	@Id
 	private String candidateId;
 	private String candidateName;
 	private String address;
-	//@Temporal(TemporalType.DATE)
+	
 	private Date dob;
 	public Date getDob() {
 		return dob;
@@ -91,6 +89,7 @@ public class CandidatePersonal implements Serializable
 				+ ", contactNumber=" + contactNumber + ", maritalStatus="
 				+ maritalStatus + ", Gender=" + gender + ", passportNumber="
 				+ passportNumber + "]";
+
 	}
 
 	

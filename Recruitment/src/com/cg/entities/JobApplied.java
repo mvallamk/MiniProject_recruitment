@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Job_Applied")
+@NamedQueries(value = {@NamedQuery(name = "app.getAll", query = "SELECT b FROM JobApplied b")})
 public class JobApplied implements Serializable 
 {
 	private static final long serialVersionUID = 1L;
@@ -65,7 +68,7 @@ public class JobApplied implements Serializable
 	@Override
 	public String toString() {
 		return "JobApplied [id=" + id + ", jobId=" + jobId + ", candidateId="
-				+ candidateId + ", compId=" + compId + "]";
+				+ candidateId + ", compId=" + compId + "]"+"\n";
 	}
 
 	

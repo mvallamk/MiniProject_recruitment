@@ -1,5 +1,6 @@
 package com.cg.client;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
@@ -36,7 +37,7 @@ public CompanyClient(String companyId)
 		System.out.println("1.Add Company Details");
 		System.out.println("2.Modify Company Details");	
 		System.out.println("3.Post Job Requirements");
-		System.out.println("4.Search and Hire Candidates");
+		System.out.println("4.Search Candidates");
 		System.out.println("5.Hire from applied Candidates");
 
 		choice=Integer.parseInt(sc.nextLine());
@@ -61,6 +62,7 @@ public CompanyClient(String companyId)
 					contactPerson,emailId,contactNumber);
 			try {
 				service.addCompanyDetails(companyMaster);
+				System.out.println("Company Registered Successfully!!");
 			} catch (RecruitmentException e) {
 			
 			 System.out.println(e.getMessage());
@@ -101,14 +103,14 @@ public CompanyClient(String companyId)
 			}
 			try {
 				service.updateCompanyDetails(companyMaster);
+				System.out.println("Details updated Successfully!!");
 			} catch (RecruitmentException e) {
 				 System.out.println(e.getMessage());
 			}
 			break;
 		case 3:
 			
-			companyMaster=service.getCompany(companyId);
-			jobRequirements.setCompanyId(companyMaster.getCompanyId());
+			jobRequirements.setCompanyId(companyId);
 			System.out.println("Enter the Job ID for the job");
 			jobRequirements.setJobID(sc.next());			
 			System.out.println("Enter the the job position required");
@@ -130,9 +132,9 @@ public CompanyClient(String companyId)
 			}
 			break;
 		case 4:
-			System.out.println("1. By Qualification");
-			System.out.println("2. By Position");
-			System.out.println("3. By Experience (in years)");
+			
+			System.out.println("1. By Position");
+			System.out.println("2. By Experience (in years)");
 
 			int switchsearch=sc.nextInt();
 			List<CandidateWorkHistory> jobList=null;
@@ -140,18 +142,11 @@ public CompanyClient(String companyId)
 			{
 
 			case 1:
-				System.out.println("Enter Qualification (hsc,ssc,grad,be)");
-				String qual=sc.next();
-				//qual=qual.toLowerCase()
-				jobList=service.getCandidateByQual(qual);
-
-				break;
-			case 2:
 				System.out.println("Enter Position (se- Software Engineer, sse- Senior Software Engineer, c- Consultant)");
 				String pos=sc.next();
 				jobList=service.getCandidateByPosition(pos);
 				break;
-			case 3:
+			case 2:
 				System.out.println("Enter Experience in years");
 				int exp=sc.nextInt();
 				jobList=service.getCandidateByExperience(exp);
@@ -172,9 +167,10 @@ public CompanyClient(String companyId)
 			if(hireChoice.equals("yes"))
 			{
 				String candidateId = appliedCandidatesList.getCandidateId();
-				LocalDate dateOfHire = LocalDate.now();
+				LocalDate date = LocalDate.now();
                 String compId = appliedCandidatesList.getCompId();
                 String jobId = appliedCandidatesList.getJobId();
+                Date dateOfHire=Date.valueOf(date);
                 
                 HireDetails hiredetails = new HireDetails(jobId, candidateId, dateOfHire, compId);
 				
@@ -182,7 +178,7 @@ public CompanyClient(String companyId)
 					service.addHiredCandidates(hiredetails);
 					System.out.println(candidateId+" hired");
 				} catch (RecruitmentException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				

@@ -3,10 +3,20 @@ package com.cg.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Job_Requirements")
+@NamedQueries({
+	@NamedQuery(name = "job.getAll", query = "SELECT b FROM JobRequirements b"),
+	@NamedQuery(name = "qual.getAll", query = "SELECT b FROM JobRequirements b where b.qualificationRequired='hsc'"),
+	@NamedQuery(name = "position.getAll", query = "SELECT b FROM JobRequirements b where b.positionRequired='se'"),
+	@NamedQuery(name = "loc.getAll", query = "SELECT b FROM JobRequirements b where b.jobLocation='pune'"),
+	@NamedQuery(name = "exp.getAll", query = "SELECT b FROM JobRequirements b where b.experienceRequired=5")
+	})
+
 public class JobRequirements 
 {
 	@Id
@@ -125,7 +135,7 @@ public class JobRequirements
 				+ ", experienceRequired=" + experienceRequired
 				+ ", qualificationRequired=" + qualificationRequired
 				+ ", jobLocation=" + jobLocation + ", jobDescription="
-				+ jobDescription + "]";
+				+ jobDescription + "]"+"\n";
 	}
 	
 	
